@@ -23,6 +23,17 @@ public class AccountServiceImpl implements AccountService {
 			return null;
 		}
 	}
+	
+	//SaveAll();
+	
+	@Override
+	public List<Account> addListAccount(List<Account> account) {
+		List<Account> list=new ArrayList<>();
+		for(int i=0;i<account.size();i++) {
+			list.addAll(account);
+		}
+		return accountRepository.saveAll(list);
+	}
 
 	@Override
 	public Account updateAccount(int accountNumber, Account account) {
