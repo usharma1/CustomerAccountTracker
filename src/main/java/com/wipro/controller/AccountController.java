@@ -38,6 +38,17 @@ public class AccountController {
 		}
 	}
 
+	//SaveALL()
+	@PostMapping("/addAll")
+	public ResponseEntity<?> addListAccount(@RequestBody List<Account> acc) throws NoDataException {
+		List<Account> list = (List<Account>) accountService.addListAccount(acc);
+		if (list != null) {
+			return new ResponseEntity<>("Added successfully", HttpStatus.CREATED);
+		} else {
+			throw new NoDataException("Empty data");
+		}
+	}
+	
 	@PutMapping("/update/{accountNumber}")
 	public ResponseEntity<?> updateAccount(@PathVariable("accountNumber") int accountNumber,
 			@RequestBody Account account) throws NotFoundException {
