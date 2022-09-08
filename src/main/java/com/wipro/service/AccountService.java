@@ -10,6 +10,9 @@ import com.wipro.model.Account;
 public interface AccountService {
 
 	public Account addAccount(Account account);
+	
+	//For SaveALL();
+	public List<Account> addListAccount(List<Account> account);
 
 	public Account updateAccount(int accountNumber, Account account);
 
