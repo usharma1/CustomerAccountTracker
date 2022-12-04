@@ -1,6 +1,5 @@
 package com.wipro.controller;
 
-import static org.assertj.core.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -18,7 +17,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wipro.model.Customer;
 import com.wipro.service.CustomerService;
@@ -65,14 +63,14 @@ class CustomerControllerTest {
 
 	@Test
 	void findCustomerbyId() throws Exception {
-		int id=1;
-		Customer customer=getCustomer();
-		
+		int id = 1;
+		Customer customer = getCustomer();
+
 		when(customerService.findCustomerbyId(any(Integer.class))).thenReturn(customer);
 		mockMvc.perform(MockMvcRequestBuilders.get("/customer/findCustomer/" + id).contentType("application/json"))
-		.andExpect(MockMvcResultMatchers.status().is(200))
-		.andExpect(MockMvcResultMatchers.content().string(mapper.writeValueAsString(customer)));
-}
+				.andExpect(MockMvcResultMatchers.status().is(200))
+				.andExpect(MockMvcResultMatchers.content().string(mapper.writeValueAsString(customer)));
+	}
 
 	public Customer getCustomer() {
 		Customer customer = new Customer(1, "Priya", "Kumari", "Delhi", 7894561230l, "PriyaADHAR");
